@@ -1,6 +1,7 @@
-function GalleryItem(){
+function GalleryItem({galleryItem}){
+    console.log(galleryItem)
     return (
-        <img src="images/generousBird.jpg"/>
+        <img src={galleryItem.path}/>
     )
 }
 

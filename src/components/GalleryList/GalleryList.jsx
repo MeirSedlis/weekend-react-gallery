@@ -1,12 +1,18 @@
-import GalleryItem from "../GalleryItem/GalleryItem";
+import GalleryItem from "../GalleryItem/GalleryItem.jsx";
 
-function GalleryList() {
+function GalleryList({galleryList}) {
   return (
     <div>
-    <p>the gallery will appear here when it's all wired up</p>
-    <GalleryItem />
+      {galleryList.map((galleryItem) => {
+        return (
+          <GalleryItem
+            key={galleryItem.id}
+            galleryItem={galleryItem} />
+        )
+      })}
     </div>
-  );
+  )
+  
 }
 
 export default GalleryList;
