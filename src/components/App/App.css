@@ -13,3 +13,11 @@
   font-size: 1.5em;
 }
 
+.galleryItem{
+  height: 320px;
+  width: 320px;
+  background-color: rgba(173, 216, 230, 0.673);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
