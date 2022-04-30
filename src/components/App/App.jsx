@@ -21,7 +21,6 @@ function App() {
     }).catch((error) => {
       console.log('GET /gallery broke:', error);
     })
-  }
     return (
       <div className="App">
         <header className="App-header">

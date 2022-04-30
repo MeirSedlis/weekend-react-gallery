@@ -6,6 +6,9 @@ function GalleryItem({ galleryItem }) {
   const flipPhoto = () => {
     setShowPhoto(!showPhoto);
   };
+
+  //uses conditional formatting to render either the photo 
+    // or the description
   const renderGalleryItem = () => {
     if (showPhoto) {
       return <img src={galleryItem.path} />;
@@ -20,31 +23,30 @@ function GalleryItem({ galleryItem }) {
     }
   };
 
-  const renderLikes = () => {
-    if (galleryItem.likes) {
+  // uses conditional formatting to render the number of reactions
+  const renderReactions = () => {
+      
+    if (galleryItem.reactions) {
       return (
         <div>
-          <p>{galleryItem.likes} people like this photo!</p>
-          <button>👍 Like</button>
+          <p>{galleryItem.reactions} people have reacted to this photo!</p>
+          <button>React!</button>
         </div>
       );
     } else {
       return (
         <div>
-          <p>No one likes this yet!</p>
-          <button>👍 Like</button>
+          <p>No one has reacted to this yet!</p>
+          <button>React!</button>
         </div>
       );
     }
   };
 
-  const photo = <img src={galleryItem.path} />;
-
-  console.log(galleryItem);
   return (
     <div onClick={flipPhoto}>
       {renderGalleryItem()}
-      {renderLikes()}
+      {renderReactions()}
     </div>
   );
 }
