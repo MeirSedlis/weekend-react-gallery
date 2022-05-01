@@ -1,20 +1,25 @@
 import { useState } from "react";
 
-function GalleryItem({ galleryItem }) {
+function GalleryItem({ galleryItem, updateReaction }) {
   const [showPhoto, setShowPhoto] = useState(true);
 
   const flipPhoto = () => {
     setShowPhoto(!showPhoto);
   };
 
-  //uses conditional formatting to render either the photo 
-    // or the description
+  const handleReaction = (e) => {
+    e.preventDefault();
+    updateReaction(galleryItem.id);
+  };
+
+  //uses conditional formatting to render either the photo
+  // or the description
   const renderGalleryItem = () => {
     if (showPhoto) {
-      return <img src={galleryItem.path} />;
+      return <img src={galleryItem.path} onClick={flipPhoto}/>;
     } else {
       return (
-        <div class="galleryItem">
+        <div className="galleryItem" onClick={flipPhoto}>
           <br />
           <p>Description:</p>
           {galleryItem.description}
@@ -25,26 +30,32 @@ function GalleryItem({ galleryItem }) {
 
   // uses conditional formatting to render the number of reactions
   const renderReactions = () => {
-      
-    if (galleryItem.reactions) {
+    if (galleryItem.reactions > 1) {
       return (
         <div>
           <p>{galleryItem.reactions} people have reacted to this photo!</p>
-          <button>React!</button>
+          <button onClick={handleReaction}>React!</button>
         </div>
       );
-    } else {
+    } else if(galleryItem.reactions === 0){
       return (
         <div>
           <p>No one has reacted to this yet!</p>
-          <button>React!</button>
+          <button onClick={handleReaction}>React!</button>
         </div>
       );
+    } else if (galleryItem.reactions === 1){
+      return(
+        <div>
+          <p>{galleryItem.reactions} person has reacted to this photo!</p>
+          <button onClick={handleReaction}>React!</button>
+        </div>
+      )
     }
   };
 
   return (
-    <div onClick={flipPhoto}>
+    <div className="itemCard">
       {renderGalleryItem()}
       {renderReactions()}
     </div>
